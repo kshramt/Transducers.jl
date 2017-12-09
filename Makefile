@@ -1,3 +1,7 @@
+# Constants
+export JULIA := julia
+
+
 # Configurations
 .SUFFIXES:
 .DELETE_ON_ERROR:
@@ -19,4 +23,4 @@ test/runtests.jl.done: src/Transducers.jl
 
 
 test/%.jl.done: test/%.jl
-	julia $< && touch $@
+	JULIA_LOAD_PATH="$(CURDIR)/src:$${JULIA_LOAD_PATH:-}" $(JULIA) $< && touch $@
